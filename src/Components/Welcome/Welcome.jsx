@@ -7,7 +7,7 @@ export const Welcome = () => {
                 <span>Dear Daily Diary</span>
                 <span>A daily task tracker to keep your spirits lifted</span>
             </h1>
-            {/* <Login /> */}
+             {/* <Login /> */}
         </div>
     ) 
 }

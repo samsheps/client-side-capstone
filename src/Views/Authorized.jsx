@@ -12,7 +12,7 @@ export const Authorized = ({ children }) => {
   }
   // If the user is NOT logged in, redirect them to the login page using the Navigate component from react-router-dom
   else {
-    return <Navigate to={`/login`} state={{ from: location }} replace />
+    return <Navigate to={"/login"} state={{ from: location }} replace />
   }
 }
 

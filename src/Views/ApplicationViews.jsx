@@ -37,11 +37,6 @@ export const ApplicationViews = () => {
         it will render into the parent outlet if there is one at the parent URL;
         we're using it below bc we only want the welcome message on the home page*/}
         <Route index element={<Welcome />} /> 
-        {/* below we have a routes extablished to listen for "/tickets" and "/customers"; 
-        when the URL is at those paths (tickets & customers, respectively--we don't need the forward slash bc it's a child of the home), we want to render the element (TicketList & CustomerList components)
-        then we have a route paramter with the path=":customerID" which will be a key:value pair;
-        customerId is the key and value will be whatever ID is rendering at that postion  */}
-        {/* both the key and value below are currentUser (one could differ but for ease we're setting them this way) */}
         <Route path="entries" element={<UserEntries currentUser={currentUser}/>} 
         />
         <Route path="create-entry">

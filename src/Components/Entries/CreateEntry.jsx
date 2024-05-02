@@ -24,10 +24,10 @@ export const CreateEntry = () => {
   //   }
   // };
 
-  // const handleSubmit = () => {
+   const handleSubmit = () => {
   //   // Handle form submission with selected tasks
-  //   console.log("Selected tasks:", selectedTasks);
-  // };
+     console.log("Selected tasks:", selectedTasks);
+   };
 
   //inside of the div will be our checkbox section
   //label needs to go inside of the input (the label of the checkbox)
@@ -45,7 +45,7 @@ export const CreateEntry = () => {
           ))}
         </form>
       </div>
-      {/* <button onClick={handleSubmit}>Submit</button> */}
+       <button onClick={handleSubmit}>Submit</button>
 
     </div >
   );

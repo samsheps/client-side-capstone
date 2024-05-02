@@ -4,7 +4,7 @@ export const getAllUsers = () => {
     );
 };
 //below we have to pass in userId so it has something to compare the dailyEntries userId to 
-export const getUserbyEntryUserId = (userId) => {
+export const getUserByEntryUserId = (userId) => {
     return fetch(`http://localhost:8088/dailyEntries?userId=${userId}&_expand=user`).then((res) =>
         res.json()
     )

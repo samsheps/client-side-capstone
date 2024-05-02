@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import "./Customers.css"
-import { getUserbyEntryUserId } from "../services/userService.jsx"
+import { getUserByEntryUserId } from "../services/userService.jsx"
 
 // whenever we're at the CustomerDetails path (Route path=":customerId" element={<CustomerDetails />), we'll render this component
 //here in the CustomerDetails component, we can get access to the using the useParams hook
@@ -13,7 +13,7 @@ export const UserDetails = () => {
     useEffect(() => {
         //using "data" instaed of customerObj below bc our expand query yeilds an array of objects
         // then it returns the info from the fetch call & we call that data (data in then((data) is taco)
-        getUserbyEntryUserId(userId).then((data) => {
+        getUserByEntryUserId(userId).then((data) => {
             console.log(data)
             const userObj = data[0] // the data @ index 0 -- we're only ever expecting to have one item in the array, so we'll start @ #1 or index 0
             setUser(userObj)

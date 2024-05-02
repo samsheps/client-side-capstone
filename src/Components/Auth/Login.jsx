@@ -21,8 +21,8 @@ export const Login = () => {
             id: user.id
           })
         )
-
-        navigate("/entries") // navigates to home 
+  
+      navigate("/entries") // navigates to home 
       } else {
         window.alert("Invalid login")
       }
