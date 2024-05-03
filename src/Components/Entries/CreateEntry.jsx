@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { getAllTasks } from "../../services/taskService";
-
+import { createDailyEntry } from "../../services/entriesService.jsx";
 
 //before the return below is where our true code will be inserted
 // useEffect is where we use & set stored state 
 // the useStates will show in our components tab in our browser -- #1 is the first usestate and #2 is the second (an array of all my task objects)
 export const CreateEntry = () => {
-  //const [selectedTasks, setSelectedTasks] = useState([]);
+  const [selectedTasks, setSelectedTasks] = useState([]);
   const [allTasks, setAllTasks] = useState([])
 
   useEffect(() => {
@@ -15,19 +15,28 @@ export const CreateEntry = () => {
     getAllTasks().then((taskData) => setAllTasks(taskData))
   }, [])
 
-  // const handleTaskSelection = (taskId) => {
-  //   const isSelected = selectedTasks.includes(taskId);
-  //   if (isSelected) {
-  //     setSelectedTasks(selectedTasks.filter((id) => id !== taskId));
-  //   } else {
-  //     setSelectedTasks([...selectedTasks, taskId]);
-  //   }
-  // };
+  const handleTaskSelection = (taskId) => {
+    const isSelected = selectedTasks.includes(taskId);
+    if (isSelected) {
+      setSelectedTasks(selectedTasks.filter((id) => id !== taskId));
+    } else {
+      setSelectedTasks([...selectedTasks, taskId]);
+    }
+  };
 
-   const handleSubmit = () => {
-  //   // Handle form submission with selected tasks
-     console.log("Selected tasks:", selectedTasks);
-   };
+  //  const handleSubmit = (userId, date) => {
+  //    // Handle form submission with selected tasks
+  //    console.log("Selected tasks:", selectedTasks);
+  //    createDailyEntry(userId, date, selectedTasks);
+  //    setSelectedTasks([])
+  //  };
+
+  const handleSubmit = () => {
+    const userId = 1; // Assuming userId is 1 for this example, you should use the actual userId
+    const date = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+    createDailyEntry(userId, date, selectedTasks);
+    setSelectedTasks([]);
+  };
 
   //inside of the div will be our checkbox section
   //label needs to go inside of the input (the label of the checkbox)
@@ -39,8 +48,14 @@ export const CreateEntry = () => {
         <form>
           {allTasks.map(task => (
             <div key={task.id}>
-              <input type="checkbox" value={task.description} id={task.id} />
-              <label>{task.description}</label>
+              <input 
+              type="checkbox" 
+              value={task.description} 
+              id={task.id}
+              checked={selectedTasks.includes(task.id)}
+              onChange={() => handleTaskSelection(task.id)}
+              />
+              <label htmlFor={task.id}>{task.description}</label>
             </div>
           ))}
         </form>
