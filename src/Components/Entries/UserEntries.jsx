@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react"
 import { getEntriesbyEntryUserId } from "../../services/entriesService.jsx"
 import { getAllTasks } from "../../services/taskService.jsx"
+import { Link } from "react-router-dom"
 
 
 export const UserEntries = ({ currentUser }) => {
     const [userEntries, setUserEntries] = useState([])
     const userId = currentUser.id
-   const [tasks, setAllTasks] = useState([])
+    const [tasks, setAllTasks] = useState([])
+    const [entryId, setEntryId] = useState("")
 
     useEffect(() => {
         getEntriesbyEntryUserId(userId).then(setUserEntries)
@@ -14,7 +16,13 @@ export const UserEntries = ({ currentUser }) => {
 
     useEffect(() => {
         getAllTasks().then(setAllTasks)
-    }, [])
+    }, [userEntries])
+
+
+    useEffect(() => {
+        userEntries.map(entry => (
+            (setEntryId(entry.id))))
+    })
 
 
     //     //this useEffect will run to set the tasks; need the tasks to filter out the description
@@ -28,19 +36,30 @@ export const UserEntries = ({ currentUser }) => {
                     <div key={entry.id}>
                         <p>Date: {entry.date}</p>
                         <ul>
-                            {entry.daysTasks?.map(dayTask => {
+                            {entry.daysTasks.length > 0 ? entry.daysTasks.map(dayTask => {
                                 const task = tasks.find(task => task.id === dayTask.taskId);
-                                return task ? <li key={dayTask.id}>{task.description}</li> : null;
-                            })}
+                                return <li key={dayTask.id}>{task.description}</li>;
+                            })
+                                : <>not here!</>}
                         </ul>
+                        <Link to={{pathname:`/edit-entry/${entry.id}`,
+                         state: {entryId: entryId }}}>Edit Entry</Link>
                     </div>
                 ))}
             </div>
+            {/* <div className="edit-entry">
+                {userEntries.map(entry => (
+                    <div key={entry.id}>
+                        <p>Date: {entry.date}</p>
+                    </div>
+                ))}
+            </div> */}
         </div>
     )
 }
 
 //need task descriptions for each task for each entry 
+//
 
 
 //get all tasks and set the them to state 

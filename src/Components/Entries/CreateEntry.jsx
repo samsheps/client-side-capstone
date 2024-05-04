@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { getAllTasks } from "../../services/taskService";
 import { createDailyEntry } from "../../services/entriesService.jsx";
+import { useNavigate } from "react-router-dom";
+
 
 //before the return below is where our true code will be inserted
 // useEffect is where we use & set stored state 
 // the useStates will show in our components tab in our browser -- #1 is the first usestate and #2 is the second (an array of all my task objects)
-export const CreateEntry = () => {
+export const CreateEntry = ({ currentUser }) => {
   const [selectedTasks, setSelectedTasks] = useState([]);
   const [allTasks, setAllTasks] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     //we're not passing anything into the getAllTasks function
@@ -32,10 +35,12 @@ export const CreateEntry = () => {
   //  };
 
   const handleSubmit = () => {
-    const userId = 1; // Assuming userId is 1 for this example, you should use the actual userId
+    const userId = currentUser.id; 
     const date = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
-    createDailyEntry(userId, date, selectedTasks);
-    setSelectedTasks([]);
+    createDailyEntry(userId, date, selectedTasks).then(
+      navigate("/entries")
+    );
+    //setSelectedTasks([]);
   };
 
   //inside of the div will be our checkbox section
@@ -61,7 +66,6 @@ export const CreateEntry = () => {
         </form>
       </div>
        <button onClick={handleSubmit}>Submit</button>
-
     </div >
   );
 };
