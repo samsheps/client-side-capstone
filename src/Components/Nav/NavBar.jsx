@@ -14,9 +14,9 @@ const navigate = useNavigate
             <li className="navbar-item">
                 <Link to="/entries">All Entries</Link>
             </li>
-            <li className="navbar-item">
+            {/* <li className="navbar-item">
                 <Link to="/logout">Log Out</Link>
-            </li>
+            </li> */}
             {localStorage.getItem("diary_user") ? (
                 <li className="navbar-item navbar-logout">
                     <Link
@@ -27,7 +27,7 @@ const navigate = useNavigate
                             navigate("/", { replace: true })
                         }}
                     >
-                        Logout
+                        Log Out
                     </Link>
                 </li>
             ) : (

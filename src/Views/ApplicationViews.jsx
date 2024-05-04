@@ -4,7 +4,7 @@ import { UserEntries } from "../Components/Entries/UserEntries.jsx"
 import { CreateEntry } from "../Components/Entries/CreateEntry.jsx"
 import { Welcome } from "../Components/Welcome/Welcome.jsx"
 import { NavBar } from "../Components/Nav/NavBar.jsx"
-
+import { EditEntry } from "../Components/Entries/EditEntry.jsx"
 
 
 export const ApplicationViews = () => {
@@ -35,14 +35,17 @@ export const ApplicationViews = () => {
       >
         {/* the index route is the default route for the parent route
         it will render into the parent outlet if there is one at the parent URL;
-        we're using it below bc we only want the welcome message on the home page*/}
+        we're using it below bc we only want the welcome message on the home page
+       -- currentUser={currentUser} is how we pass in a prop*/}
+
         <Route index element={<Welcome />} /> 
         <Route path="entries" element={<UserEntries currentUser={currentUser}/>} 
         />
         <Route path="create-entry">
-          <Route index element={<CreateEntry />} />
+          <Route index element={<CreateEntry currentUser={currentUser}/>} />
           {/* <Route path=":edit-entry" element={<EditEntry />} /> */}
         </Route>
+         <Route path="/edit-entry/:entryId" element={<EditEntry />} />
       </Route>
     </Routes>
   )
