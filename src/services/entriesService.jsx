@@ -55,20 +55,16 @@ export const updateEntry = (entryId, updatedEntryData) => {
     }).then((res) => res.json());
 };
 
-
+export const deleteEntry = (entryId) => {
+    return fetch(`http://localhost:8088/entries/${entryId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
+  };
 
 
 //http://localhost:8088/entries?userId=1&_embed=daysTasks
 
 // http://localhost:8088/daysTasks?_expand=entry&_expand=task
-
-// for each of these objects, only give me the ones whose user id 
-// matches what's in local storage
-
-//localStorage.getItem("diary_user").id
-
-//task.entry.id=
-
-//there should be 5 services: get all, get one, post, edit, delete 
-
-// need a post in my entries service 

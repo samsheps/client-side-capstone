@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getAllTasks } from "../../services/taskService";
 import { createDailyEntry } from "../../services/entriesService.jsx";
 import { useNavigate } from "react-router-dom";
-
+import "./Entries.css"
 
 //before the return below is where our true code will be inserted
 // useEffect is where we use & set stored state 
@@ -35,7 +35,7 @@ export const CreateEntry = ({ currentUser }) => {
   //  };
 
   const handleSubmit = () => {
-    const userId = currentUser.id; 
+    const userId = currentUser.id;
     const date = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
     createDailyEntry(userId, date, selectedTasks).then(
       navigate("/entries")
@@ -46,26 +46,30 @@ export const CreateEntry = ({ currentUser }) => {
   //inside of the div will be our checkbox section
   //label needs to go inside of the input (the label of the checkbox)
   return (
-    <div>
+    <div className="header-section">
       <h1>Create Entry</h1>
       <h2>Todays Tasks:</h2>
       <div className="task-section">
         <form>
+          <div className="tasks">
           {allTasks.map(task => (
             <div key={task.id}>
-              <input 
-              type="checkbox" 
-              value={task.description} 
-              id={task.id}
-              checked={selectedTasks.includes(task.id)}
-              onChange={() => handleTaskSelection(task.id)}
+              <input
+                type="checkbox"
+                value={task.description}
+                id={task.id}
+                checked={selectedTasks.includes(task.id)}
+                onChange={() => handleTaskSelection(task.id)}
               />
               <label htmlFor={task.id}>{task.description}</label>
             </div>
           ))}
+          </div>
         </form>
       </div>
-       <button onClick={handleSubmit}>Submit</button>
+      <div className="submit-btn">
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
     </div >
   );
 };

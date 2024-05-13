@@ -21,8 +21,8 @@ export const Login = () => {
             id: user.id
           })
         )
-  
-      navigate("/entries") // navigates to home 
+
+        navigate("/entries") // navigates to home 
       } else {
         window.alert("Invalid login")
       }
@@ -34,7 +34,11 @@ export const Login = () => {
       <section>
         <form className="form-login" onSubmit={handleLogin}>
           <h1>Dear Daily Diary</h1>
-          <h2>Please sign in</h2>
+          <div className="subtitle">
+            <h2>★ A daily task tracker to keep your spirits</h2>
+            <h3>lifted</h3>
+            </div>
+            <h4>Please sign in</h4>
           <fieldset>
             <div className="form-group">
               <input

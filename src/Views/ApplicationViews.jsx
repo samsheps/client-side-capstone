@@ -38,15 +38,17 @@ export const ApplicationViews = () => {
         we're using it below bc we only want the welcome message on the home page
        -- currentUser={currentUser} is how we pass in a prop*/}
 
-        <Route index element={<Welcome />} /> 
-        <Route path="entries" element={<UserEntries currentUser={currentUser}/>} 
+        <Route index element={<Welcome />} />
+        <Route path="entries" element={<UserEntries currentUser={currentUser} />}
         />
         <Route path="create-entry">
-          <Route index element={<CreateEntry currentUser={currentUser}/>} />
+          <Route index element={<CreateEntry currentUser={currentUser} />} />
           {/* <Route path=":edit-entry" element={<EditEntry />} /> */}
         </Route>
-         <Route path="/edit-entry/:entryId" element={<EditEntry />} />
+        <Route path="/edit-entry/:entryId" element={<EditEntry />} />
+        <Route path="/delete-entry/:entryId" element={<EditEntry />} />
       </Route>
+
     </Routes>
   )
 }

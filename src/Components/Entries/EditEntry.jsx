@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { deleteOriginalDaysTasks, getAllTasks, getDailyTasksAndDescriptionsByEntryId, updateDaysTasks } from "../../services/taskService";
-import { getEntryById, updateEntry } from "../../services/entriesService";
+import { getEntryById, updateEntry, deleteEntry } from "../../services/entriesService";
 import { useNavigate, useParams } from "react-router-dom";
-
+import "./Entries.css"
 
 
 //below we're passing in something (entryId) as a prop; 
@@ -49,7 +49,7 @@ export const EditEntry = () => {
     }, [entryId])
 
     useEffect(() => {
-        getDailyTasksAndDescriptionsByEntryId(entryId).then((data) => 
+        getDailyTasksAndDescriptionsByEntryId(entryId).then((data) =>
             setTasksAndDescriptions(data));
     }, [entry])
 
@@ -57,7 +57,7 @@ export const EditEntry = () => {
 
     useEffect(() => {
         let selected = tasksAndDescriptions.map(tad => tad.taskId)
-        let tadIds = tasksAndDescriptions.map(tad => tad.id) 
+        let tadIds = tasksAndDescriptions.map(tad => tad.id)
         console.log(selected)
         console.log(tadIds)
         setSelectedTasks(selected)
@@ -72,10 +72,10 @@ export const EditEntry = () => {
             setSelectedTasks([...selectedTasks, taskId]);
         }
     };
-//need to address the page not autorendering when a save or delete occurs
-// it should be navigating to entries and rerendering 
+    //need to address the page not autorendering when a save or delete occurs
+    // it should be navigating to entries and rerendering 
 
-//the below don't fire until we get into the return
+    //the below don't fire until we get into the return
     const handleSubmit = () => {
         const daysTasks = selectedTasks.map((taskId) => ({ entryId: parseInt(entryId), taskId: taskId }))
         updateDaysTasks(daysTasks).then(() => {
@@ -83,35 +83,36 @@ export const EditEntry = () => {
                 navigate("/entries")
             })
         })
-    //     const updatedEntry = {
-    //         //the below (...entry) creates a copy of entry then it sets/updates the daysTasks property with the value on the right
-    //         ...entry,
-    //    };
-    //     updateEntry(updatedEntry);
-    //     setSelectedTasks([]);
-    }; 
-
+        //     const updatedEntry = {
+        //         //the below (...entry) creates a copy of entry then it sets/updates the daysTasks property with the value on the right
+        //         ...entry,
+        //    };
+        //     updateEntry(updatedEntry);
+        //     setSelectedTasks([]);
+    };
 
 
     if (!entry) {
         return <div>Loading...</div>;
     }
 
+    const handleDelete = () => {
+        if (window.confirm("Are you sure you want to delete this entry?")) {
+            deleteEntry(entryId).then(() => {
+                navigate("/entries");
+            });
+        }
+    };
+
 
     return (<>
         <div className="header-section">
-            <h1>Edit Entry</h1>
-            <h1>{entryId}</h1>
-            <h2>{entry.date}</h2>
+            <h1>Edit Entry #{entryId}</h1>
+            <h2>Date: {entry.date}</h2>
         </div>
-        {/* <section>
-            Daily Items Already Selected:
-            {taskList.map((item) => (
-                <div key={item.taskId}> {item} </div>
-            ))}
-            </section> */}
         <div className="task-section">
             <form>
+                <div className="tasks">
                 {allTasks.map((task) => (
                     <div key={task.id}>
                         <input
@@ -124,8 +125,15 @@ export const EditEntry = () => {
                         <label htmlFor={task.id}>{task.description}</label>
                     </div>
                 ))}
+                </div>
             </form>
         </div>
-        <button onClick={handleSubmit}>Save Changes</button>
-     </>);
+        <div className="save-btn">
+            <button onClick={handleSubmit}>Save Changes</button>
+        </div>
+        <div className="delete-btn">
+            <button onClick={handleDelete}>Delete Entry</button>
+        </div>
+    </>);
 }
+

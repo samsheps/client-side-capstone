@@ -5,7 +5,7 @@ import { ApplicationViews } from "./Views/ApplicationViews.jsx";
 import { Register } from "./Components/Auth/Register.jsx";
 import { Welcome } from "./Components/Welcome/Welcome.jsx";
 import { Login } from "./Components/Auth/Login.jsx";
-
+import "./App.css"
 
 
 export const App = () => {
