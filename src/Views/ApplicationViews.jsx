@@ -39,7 +39,7 @@ export const ApplicationViews = () => {
        -- currentUser={currentUser} is how we pass in a prop*/}
 
         <Route index element={<Welcome />} />
-        <Route path="entries" element={<UserEntries currentUser={currentUser} />}
+        <Route path="entries" element={<UserEntries />}
         />
         <Route path="create-entry">
           <Route index element={<CreateEntry currentUser={currentUser} />} />

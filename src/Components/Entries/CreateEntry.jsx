@@ -34,14 +34,17 @@ export const CreateEntry = ({ currentUser }) => {
   //    setSelectedTasks([])
   //  };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const userId = currentUser.id;
     const date = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
-    createDailyEntry(userId, date, selectedTasks).then(
-      navigate("/entries")
-    );
-    //setSelectedTasks([]);
-  };
+    try {
+      await createDailyEntry(userId, date, selectedTasks);
+      setSelectedTasks([]);
+      navigate("/entries");
+  } catch (error) {
+      console.error("Error creating daily entry:", error);
+  }
+};
 
   //inside of the div will be our checkbox section
   //label needs to go inside of the input (the label of the checkbox)

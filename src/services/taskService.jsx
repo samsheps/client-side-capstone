@@ -1,4 +1,4 @@
-export const getAllTasks = () => {
+export const getAllTasks = async () => {
   return fetch("http://localhost:8088/tasks").then((res) =>
     res.json()
   );
