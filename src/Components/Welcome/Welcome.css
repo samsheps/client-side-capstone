@@ -4,7 +4,7 @@
     text-align: center;
     padding: 5rem 3rem;
     border: 1px solid var(--outline);
-    background-color: white;
+    background-color: rgb(227, 110, 110);
     border-radius: 0.5rem;
   }
   
@@ -13,8 +13,23 @@
     display: flex;
     flex-direction: column;
     color: var(--primary);
+    font-size: 75px;
+  }
+
+  .welcome-container > h2 {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 50px;
   }
   
+  .welcome-container > h3 {
+    display: flex;
+    flex-direction: column;
+    color: rgb(209, 230, 235);
+    font-size: 50px;
+  }
+
   /* This targets any div that is a child of an element with the .welcome-container class */
   .welcome-container > div {
     font-style: italic;

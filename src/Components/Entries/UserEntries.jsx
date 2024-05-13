@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { getEntriesbyEntryUserId } from "../../services/entriesService.jsx"
 import { getAllTasks } from "../../services/taskService.jsx"
 import { Link } from "react-router-dom"
+import "./Entries.css"
 
 
 export const UserEntries = ({ currentUser }) => {
@@ -29,31 +30,36 @@ export const UserEntries = ({ currentUser }) => {
     // for each entry
     //telling it to wait to render at {entry.daysTasks?.map
     return (
-        <div>
+        <div className="header-section">
             <h1>Past Diary Entries</h1>
-            <div className="task-section">
-                {userEntries.map(entry => (
-                    <div key={entry.id}>
-                        <p>Date: {entry.date}</p>
-                        <ul>
-                            {entry.daysTasks.length > 0 ? entry.daysTasks.map(dayTask => {
-                                const task = tasks.find(task => task.id === dayTask.taskId);
-                                return <li key={dayTask.id}>{task.description}</li>;
-                            })
-                                : <>not here!</>}
-                        </ul>
-                        <Link to={{pathname:`/edit-entry/${entry.id}`,
-                         state: {entryId: entryId }}}>Edit Entry</Link>
-                    </div>
-                ))}
+            <div className="entries-container">
+                <div className="entries">
+                    {userEntries.map(entry => (
+                        <div key={entry.id}>
+                            <div className="entry">
+                                <div className="date">
+                                    <p>Date: {entry.date}</p>
+                                </div>
+                                <ul>
+                                    {entry.daysTasks.length > 0 ? entry.daysTasks.map(dayTask => {
+                                        const task = tasks.find(task => task.id === dayTask.taskId);
+                                        return task ? <li key={dayTask.id}>{task.description}</li> : null;
+                                    })
+                                        : <>not here!</>}
+                                </ul>
+                                <div className="edit-btn">
+                                    <Link to={{
+                                        pathname: `/edit-entry/${entry.id}`,
+                                        state: { entryId: entryId }
+                                    }}>Edit Entry</Link>
+                                </div>
+                                {/* <Link to={{pathname:`/delete-entry/${entry.id}`,
+                         state: {entryId: entryId }}}>Delete Entry</Link> */}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-            {/* <div className="edit-entry">
-                {userEntries.map(entry => (
-                    <div key={entry.id}>
-                        <p>Date: {entry.date}</p>
-                    </div>
-                ))}
-            </div> */}
         </div>
     )
 }

@@ -12,13 +12,13 @@ font-family: "Roboto", sans-serif;
 :root {
   --primary: #ffb400;
   --secondary: #00a6ed;
-  --info: #7fb800;
+  --info: #f8ee81;
   --warning: #f6511d;
   --white: #ffffff;
   --offWhite: #f2f2f3;
   --dark: #3b3b3b;
   --outline: #c3c0c0;
-  --appBackground: #dddade;
+  --appBackground: #ebacaf;
 }
 
 /* GLOBAL STYLES */
@@ -63,7 +63,7 @@ button {
   padding: 0.5rem 1rem;
   border: 1px solid transparent;
   border-radius: 0.5rem;
-  color: var(--white);
+  color: rgb(22, 19, 19);
   cursor: pointer;
 }
 
@@ -101,7 +101,6 @@ button {
   background-color: #71a500;
 }
 
-/* This CSS can be deleted. It is only used for the first chapter */
 .welcome {
   text-align: center;
   margin: 5rem 14rem;

@@ -46,4 +46,4 @@ export const deleteOriginalDaysTasks = (deselectedTasks) => {
 // a promise all takes an array of promises, goes through each of them and once 
 // it's done it will return out of updateDaysTasks 
 // now we can call updateDaysTasks and attach a .then to it 
-// promises give us the ability to give javasript a fuel limiter as greg puts it
+// promises give us the ability to give javasript a "fuel limiter"

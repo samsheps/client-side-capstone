@@ -1,5 +1,7 @@
 .container-login {
     text-align: center;
+    flex-flow: wrap;
+    justify-self: center;
   }
   
   .container-login > section > a {
@@ -10,14 +12,30 @@
   .form-login {
     width: 60%;
     margin: 2rem auto;
+    font-family: 'Courier New', Courier, monospace;
   }
   
   .form-login > h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
     text-align: center;
+    font-style: oblique;
+    font-family: 'Courier New';
   }
   
-  .form-login > h2 {
+  .form-login > .subtitle > h2 {
+    font-size: 2.5rem;
+    margin-left: 170px;
+    display: flex;
+    font-weight: 1000;
+  }
+
+  .form-login > .subtitle > h3 {
+    font-size: 2.5rem;
+    margin: 1rem;
+    color: rgb(236, 233, 74);
+  }
+
+  .form-login > h4 {
     text-align: center;
     font-size: 1.5rem;
   }
@@ -35,6 +53,11 @@
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
+
+  .subtitle {
+    display: flex;
+    align-items: baseline
+  }
   
   /************* FORM STYLES *************/
   
@@ -43,8 +66,8 @@
     border: 1px solid var(--outline);
     border-radius: 10px;
     padding: 1rem 0rem 0rem 1rem;
-    box-shadow: 1px 2px 5px lightgray;
-    background-color: var(--offWhite);
+    box-shadow: 1px 2px 5px rgb(213, 55, 55);
+    background-color: rgb(239, 159, 93);
   }
   
   fieldset {

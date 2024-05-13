@@ -32,10 +32,6 @@ export const UserDetails = () => {
                 <span className="customer-info">Address : </span>
                 {customer.address}
             </div>
-            <div>
-                <span className="customer-info">Phone Number : </span>
-                {customer.phoneNumber}
-            </div>
         </section>
     )
 }
