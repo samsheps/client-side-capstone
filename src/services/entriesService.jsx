@@ -1,16 +1,16 @@
-export const getEntriesbyEntryUserId = (userId) => {
+export const getEntriesbyEntryUserId = async (userId) => {
     return fetch(`http://localhost:8088/entries?userId=${userId}&_embed=daysTasks`).then((res) =>
         res.json()
     )
 }
 
-export const getEntryById = (id) => {
+export const getEntryById = async (id) => {
     return fetch(`http://localhost:8088/entries/${id}`).then((res) =>
         res.json()
     )
 }
 
-export const createDailyEntry = (userId, date, selectedTasks) => {
+export const createDailyEntry = async (userId, date, selectedTasks) => {
     const dailyEntry = {
         userId: userId,
         date: date,
