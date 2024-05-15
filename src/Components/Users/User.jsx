@@ -15,4 +15,5 @@ export const User = ({ users }) => {
     )
 }
 
-//this component may not be necessary--
+/* the "user" components are not currently in use but future iterations of this project
+may feature a user profile */
