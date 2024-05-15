@@ -4,14 +4,14 @@ import "./Login.css"
 import { createUser, getUserByEmail } from "../../services/userService.jsx"
 
 export const Register = (props) => {
-    const [customer, setCustomer] = useState({
+    const [user, setUser] = useState({
         email: "",
         fullName: "",
     })
     let navigate = useNavigate()
 
     const registerNewUser = () => {
-        createUser(customer).then((createdUser) => {
+        createUser(user).then((createdUser) => {
             if (createdUser.hasOwnProperty("id")) {
                 localStorage.setItem(
                     "diary_user",
@@ -27,7 +27,7 @@ export const Register = (props) => {
 
     const handleRegister = (e) => {
         e.preventDefault()
-        getUserByEmail(customer.email).then((response) => {
+        getUserByEmail(user.email).then((response) => {
             if (response.length > 0) {
                 // Duplicate email. No good.
                 window.alert("Account with that email address already exists")
@@ -38,10 +38,10 @@ export const Register = (props) => {
         })
     }
 
-    const updateCustomer = (evt) => {
-        const copy = { ...customer }
+    const updateUser = (evt) => {
+        const copy = { ...user }
         copy[evt.target.id] = evt.target.value
-        setCustomer(copy)
+        setUser(copy)
     }
 
     return (
@@ -52,7 +52,7 @@ export const Register = (props) => {
                 <fieldset>
                     <div className="form-group">
                         <input
-                            onChange={updateCustomer}
+                            onChange={updateUser}
                             type="text"
                             id="fullName"
                             className="form-control"
@@ -65,7 +65,7 @@ export const Register = (props) => {
                 <fieldset>
                     <div className="form-group">
                         <input
-                            onChange={updateCustomer}
+                            onChange={updateUser}
                             type="email"
                             id="email"
                             className="form-control"
